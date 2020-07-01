@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Router from 'next/router'
 
 export const isBrowser = () => typeof window !== "undefined"
 
@@ -7,7 +8,7 @@ type UserLoginInfo = {
   password: string
 }
 
-export const login = async (data: UserLoginInfo) => {
+export const loginHttp = async (data: UserLoginInfo) => {
   return await axios({
     method: 'post',
     url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/sign_in`,
@@ -28,5 +29,20 @@ export const login = async (data: UserLoginInfo) => {
     return {
       status: err.response!.status
     }
+  })
+}
+
+export const logoutHttp = async () => {
+  await axios({
+    method: 'get',
+    url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/log_out`,
+    withCredentials: true,
+  })
+  .then(() => {
+    localStorage.removeItem('user')
+    Router.push('/')
+  })
+  .catch(err => {
+    console.log(err)
   })
 }

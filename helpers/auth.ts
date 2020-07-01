@@ -1,3 +1,5 @@
+import { logoutHttp } from "./httprequests"
+
 export const isBrowser = () => typeof window !== "undefined"
 
 export const getUser = () => 
@@ -16,5 +18,5 @@ export const isLoggedIn = () => {
 
 export const logout = () => {
   localStorage.removeItem('user')
-  
+  logoutHttp();
 }
