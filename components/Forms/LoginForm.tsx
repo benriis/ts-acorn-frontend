@@ -26,21 +26,6 @@ const LoginForm = () => {
           ? Router.push(`/`) 
           : console.log("gtfo 401")
       })
-
-    // await axios({
-    //   method: 'post',
-    //   url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/sign_in`,
-    //   data: input,
-    //   withCredentials: true,
-    // })
-    // .then(res => {
-    //   let userStr = JSON.stringify(res.data.data.user)
-    //   localStorage.setItem('user', userStr)
-    //   Router.push(`/`)
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
   }
 
   return (

@@ -9,18 +9,20 @@ import { isBrowser, logout } from '../helpers/auth'
 type props = {
   tags?: Object[],
   pages?: Object[],
-  errorMessage?: string
+  statusCode?: number
 }
 
-const IndexPage = ({tags, pages, errorMessage}: props) => {
+const IndexPage = ({tags, pages, statusCode}: props) => {
   if (isBrowser()) {
-    if (!!errorMessage) {
+    if (statusCode == 401) {
       logout()
       Router.push(`/auth/login`)
     }
   }
 
   return (
+    <>
+    {statusCode !== 401 &&
     <>
     <p>Most used tags</p>
     {tags !== undefined &&
@@ -31,6 +33,8 @@ const IndexPage = ({tags, pages, errorMessage}: props) => {
       <PageLink pageProps={pages}/>
     }
     </>
+    }
+    </>
   )
 }
 
@@ -38,38 +42,46 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const query_tags = `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/topics`
   const query_pages = `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/pages`
-  
+  let pages = {data: {}}
+  let tags = {data: {}}
+
   await axios.get(query_tags, {
     headers: {
       cookie: ctx.req.headers.cookie 
     }
   })
-  .then(res => console.log(res.status))
-  .catch(err => console.log(err.response.status))
+  .then(res => tags = res.data)
+  .catch(() => ctx.res.statusCode = 401)
 
-  const res_pages = await axios.get(query_pages, {
+  await axios.get(query_pages, {
     headers: {
       cookie: ctx.req.headers.cookie
     }
   })
+  .then(res => pages = res.data)
+  .catch(() => ctx.res.statusCode = 401)
 
-  const result = await res_pages
-  console.log("======================================")
-  console.log(result)
-  console.log("======================================")
+  // console.log("======================================")
+  // !res_pages ? ctx.res.statusCode = 401 : null
+  // console.log(ctx.res.statusCode)
+  // console.log("======================================")
 
 
   
   // const tags = await res_tags.data
   // const pages = await res_pages.data
-  
-  // console.log(pages)
-  // console.log(tags)
+  console.log("======= Pages =======")
+  console.log(pages)
+  console.log("======= tags ========")
+  console.log(tags)
+  console.log("==== Status code ====")
+  console.log(ctx.res.statusCode)
 
   return {
     props: { 
-      // tags: tags.data,
-      // pages: pages.data 
+      tags: tags.data,
+      pages: pages.data,
+      statusCode: ctx.res.statusCode
     }
   }
 }

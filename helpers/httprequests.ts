@@ -17,11 +17,14 @@ export const login = async (data: UserLoginInfo) => {
   .then(res => {
     let userStr = JSON.stringify(res.data.data.user)
     localStorage.setItem('user', userStr)
+    console.log(res)
+    
     return {
       status: res.status,
     }
   })
   .catch(err => {
+    console.log(err)
     return {
       status: err.response!.status
     }

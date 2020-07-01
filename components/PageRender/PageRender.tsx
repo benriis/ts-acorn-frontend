@@ -1,4 +1,5 @@
 import styles from './PageRender.module.scss'
+import Tag from "../Tag/Tag"
 
 type pageProps = {
   page: {
@@ -10,7 +11,6 @@ type pageProps = {
   }
 }
 
-import Tag from "../Tag/Tag"
 
 const PageRender = ({ page }: pageProps) => {
   return (

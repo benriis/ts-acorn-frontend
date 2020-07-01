@@ -49,7 +49,7 @@ const Navbar = () => {
       <div className={styles.header}>
         <Link href="/"><h1>ACORN</h1></Link>
       </div>
-      {isLoggedIn ?
+      {isLoggedIn() ?
         <div>
           {hey}
         </div>
