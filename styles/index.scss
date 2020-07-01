@@ -1,0 +1,41 @@
+@import "variables.scss";
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+  margin: 1rem;
+}
+
+h1, h2, h3, h4 {
+  font-family: $header-font;
+}
+
+p {
+  font-family: $body-font;
+}
+
+a {
+  font-family: $body-font;
+}
+
+.title {
+  text-align: center;
+}
+
+button {
+  outline: 0;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+
+blockquote {
+  margin: 0;
+  padding: .5rem 1rem;
+  border-left: 8px solid #eee;
+  p {
+    margin: 0;
+  }
+}

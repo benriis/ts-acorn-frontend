@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.navbar {
+  display: flex;
+  align-items: baseline;
+}
+
+.button {
+  font-weight: 700;
+  color: black;
+  text-decoration-thickness: .1rem;
+  margin-right: 1rem;
+  &:hover {
+    color: $blue;
+    text-decoration-color: $teal;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.header {
+  flex-grow: 2;
+  color: $blue;
+  h1 {
+    margin: .5rem 0;
+  }
+}

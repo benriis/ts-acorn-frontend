@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+
+.container {
+  height: calc(100vh - 76px);
+  display: flex;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(174, 174, 174, 0.5);
+  box-shadow: 0 -1px 10px rgba(0,0,0,0.05),0 1px 4px rgba(0,0,0,0.1),0 10px 30px #f3ece8;
+  margin: auto;
+  flex-grow: 2;
+  max-width: 450px;
+}
+
+.inputfield {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  &:first-child {
+    padding-top: 0;
+  }
+  label {
+    font-family: $header-font;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+  }
+  input {
+    padding: 10px;
+  }
+}
+
+.button {
+  margin-top: 2rem;
+  background: none;
+  border: 1px solid #bfbfbf;
+  border-bottom: 2px solid #bfbfbf;
+  padding: .5rem 0;
+  font-family: $header-font;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .form {
+    width: fit-content;
+    padding: none;
+    border: 0px;
+    box-shadow: none;
+    padding: 1rem;
+  }
+}

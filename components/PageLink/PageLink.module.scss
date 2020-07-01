@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  a {
+    margin-bottom: .5rem;
+  }
+}

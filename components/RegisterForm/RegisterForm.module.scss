@@ -1,0 +1,44 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldset {
+  border: 1px solid #585858;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.inputfield {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  &:nth-child(1) {
+    padding-top: 0;
+  }
+  input {
+    height: 2rem;
+  }
+}
+
+.button {
+  background: none;
+  border: 1px solid #585858;
+  margin-top: 1rem;
+  padding: .5rem 0;
+  -webkit-box-shadow: 4px 4px 0px 0px rgba(88,88,88,1);
+  -moz-box-shadow: 4px 4px 0px 0px rgba(88,88,88,1);
+  box-shadow: 4px 4px 0px 0px rgba(88,88,88,1);
+  &:hover {
+    -webkit-box-shadow: inset 2px 2px 0px 0px rgba(88,88,88,1);
+    -moz-box-shadow: inset 2px 2px 0px 0px rgba(88,88,88,1);
+    box-shadow: inset 2px 2px 0px 0px rgba(88,88,88,1);
+  }
+}
+
+@media (min-width: 700px) {
+  .fieldset {
+    width: 600px;
+    margin: 1rem auto;
+  }
+}
