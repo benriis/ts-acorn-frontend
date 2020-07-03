@@ -3,27 +3,12 @@ import styles from './Navbar.module.scss'
 import Link from 'next/link'
 import Button from '../Button/Button'
 import { isLoggedIn, getUser, logout } from '../../helpers/auth'
-import axios from 'axios'
-import Router from 'next/router'
 
 const Navbar = () => {
 
   const handleLogout = async (e: any) => {
-    logout()
     e.preventDefault()
-    await axios({
-      method: 'get',
-      url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/log_out`,
-      withCredentials: true,
-    })
-    .then(res => {
-      console.log(res)
-      localStorage.removeItem('user')
-      Router.push('/auth/login')
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    logout()
   }
 
   let leftSideNav;
