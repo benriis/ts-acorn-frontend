@@ -1,20 +1,25 @@
-import Mde from '../../components/Mde/Mde'
-import styles from './new.module.scss'
+import dynamic from 'next/dynamic'
+import { createPageHttp } from '../../helpers/httprequests'
+import { GetServerSideProps } from 'next'
+const Editor = dynamic(() => import('../../components/EditorTest/EditorTest'), { ssr: false })
 
-const New = () => {
+const New = ({ parentPostId }: any) => {
+  const createPage = async (data: object) => {
+    createPageHttp(data, parentPostId)
+  }
+
   return (
-    <div className={styles.container}>
-      <form className={styles.form}>
-        <div className={styles.meta}>
-          <label>Title</label>
-          <input className={styles.inputfield}/>
-          <label>Tags</label>
-          <input className={styles.inputfield}/>
-        </div>
-      <Mde />
-      </form>
-    </div>
+    <Editor submitData={createPage} currentPage={null} />
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const parent_id = ctx.query.page
+  return {
+    props: {
+      parentPostId: parent_id ? parent_id : null
+    }
+  }
 }
 
 export default New

@@ -1,22 +1,12 @@
 import { GetServerSideProps } from "next";
 import axios from 'axios'
+import { logout } from "../../helpers/auth";
 
 const Logout = ({page}: any)  => {
 
   const handleLogout = async (e: any) => {
     e.preventDefault()
-    await axios({
-      method: 'get',
-      url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/log_out`,
-      withCredentials: true,
-    })
-    .then(res => {
-      console.log(res)
-      localStorage.removeItem('user')
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    logout()
   }
 
   return (
@@ -38,8 +28,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
     withCredentials: true,
   })
-
-  console.log(ctx.res)
 
   const page = await res.data
 

@@ -26,17 +26,17 @@ const Navbar = () => {
     })
   }
 
-  let hey = null
+  let leftSideNav;
   if (isLoggedIn()) {
-    hey = (
+    leftSideNav = (
     <>
-      <Button href={"/editorPage"} title={"Write page"}/>
-      <Link href="/auth/login"><a onClick={handleLogout}>logout</a></Link>
-      <p>hey {getUser().email}</p>
+      <Button href={"/page/new"} title={"Write page"}/>
+      <a onClick={handleLogout}>logout</a>
+      <p className={styles.greeter}>Hey {getUser().email}</p>
     </>
     )
   } else {
-    hey = (
+    leftSideNav = (
     <>
       <Link href="/auth/register"><a className={styles.button}>Register</a></Link>
       <Link href="/auth/login"><a className={styles.button}>Login</a></Link>
@@ -49,15 +49,7 @@ const Navbar = () => {
       <div className={styles.header}>
         <Link href="/"><h1>ACORN</h1></Link>
       </div>
-      {isLoggedIn() ?
-        <div>
-          {hey}
-        </div>
-        :
-        <>
-          {hey}
-        </>
-      }
+      {leftSideNav}
     </nav>
   )
 }

@@ -22,18 +22,22 @@ const IndexPage = ({tags, pages, statusCode}: props) => {
 
   return (
     <>
-    {statusCode !== 401 &&
-    <>
-    <p>Most used tags</p>
-    {tags !== undefined &&
-      <Tag tagProps={tags} />
-    }
-    <p>Recent pages</p>
-    {pages !== undefined &&
-      <PageLink pageProps={pages}/>
-    }
-    </>
-    }
+      {statusCode !== 401 &&
+        <>
+          {tags !== undefined &&
+            <>
+              <p>Most used tags</p>
+              <Tag tagProps={tags} />
+            </>
+          }
+          {pages !== undefined &&
+            <>
+              <p>Recent pages</p>
+              <PageLink pageProps={pages}/>
+            </>
+          }
+        </>
+      }
     </>
   )
 }
@@ -60,22 +64,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   })
   .then(res => pages = res.data)
   .catch(() => ctx.res.statusCode = 401)
-
-  // console.log("======================================")
-  // !res_pages ? ctx.res.statusCode = 401 : null
-  // console.log(ctx.res.statusCode)
-  // console.log("======================================")
-
-
-  
-  // const tags = await res_tags.data
-  // const pages = await res_pages.data
-  console.log("======= Pages =======")
-  console.log(pages)
-  console.log("======= tags ========")
-  console.log(tags)
-  console.log("==== Status code ====")
-  console.log(ctx.res.statusCode)
 
   return {
     props: { 

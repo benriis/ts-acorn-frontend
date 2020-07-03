@@ -1,5 +1,4 @@
 import Link from "next/link"
-import styles from './Button.module.scss'
 
 type button = {
   href: string,
@@ -8,9 +7,11 @@ type button = {
 }
 
 const Button = (props: button) => {
+
   return (
-    <Link href={props.href}><a className={styles.button}>{props.title}</a></Link>
+    <Link href={props.href}><a>{props.title}</a></Link>
   )
+  
 }
 
 export default Button

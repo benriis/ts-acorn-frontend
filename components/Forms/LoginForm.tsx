@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Form.module.scss'
-import Router from 'next/router'
-import { login } from '../../helpers/httprequests'
+import { loginHttp } from '../../helpers/httprequests'
 
 const LoginForm = () => {
 
@@ -20,12 +19,7 @@ const LoginForm = () => {
 
   const submit = async (e: any) => {
     e.preventDefault()
-    login(input)
-      .then(res => {
-        res.status == 200 
-          ? Router.push(`/`) 
-          : console.log("gtfo 401")
-      })
+    loginHttp(input)
   }
 
   return (

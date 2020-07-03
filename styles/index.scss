@@ -16,6 +16,17 @@ p {
 
 a {
   font-family: $body-font;
+  font-weight: 700;
+  color: black;
+  text-decoration-thickness: .1rem;
+  margin-right: 1rem;
+  &:hover {
+    color: $blue;
+    text-decoration-color: $teal;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .title {

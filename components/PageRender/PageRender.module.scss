@@ -4,3 +4,11 @@
     padding-bottom: 1rem;
   }
 }
+
+.stringList {
+  display: flex;
+  flex-direction: column;
+  a {
+    margin-bottom: .5rem;
+  }
+}
