@@ -39,7 +39,6 @@ const EditorTest = ({submitData, currentPage}) => {
   return (
     <div>
       <div className={styles.metaContainer}> 
-        <button onClick={() => submitData(metaData)}>Submit</button>
         <label htmlFor="title">Title</label>
         <input onChange={handleChange} value={metaData.title} type="text" id="title" name="title"/>
         <label htmlFor="tags">Tags</label>
@@ -53,6 +52,7 @@ const EditorTest = ({submitData, currentPage}) => {
           spellChecker: false,
         }}  
       />
+      <button className={styles.button} onClick={() => submitData(metaData)}>Submit</button>
     </div>
   )
 }

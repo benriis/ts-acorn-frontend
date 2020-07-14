@@ -4,11 +4,12 @@ import { GetServerSideProps } from 'next'
 import PageLink from '../components/PageLink/PageLink'
 import Router from 'next/router'
 import { isBrowser, logout } from '../helpers/auth'
+import { useEffect } from 'react'
 
 
 type props = {
-  tags?: Object[],
-  pages?: Object[],
+  tags: Object[],
+  pages: Object[],
   statusCode?: number
 }
 
@@ -24,18 +25,21 @@ const IndexPage = ({tags, pages, statusCode}: props) => {
     <>
       {statusCode !== 401 &&
         <>
-          {tags !== undefined &&
+          {tags.length > 0 &&
             <>
               <p>Most used tags</p>
               <Tag tagProps={tags} />
             </>
           }
-          {pages !== undefined &&
+          {pages.length > 0 &&
             <>
               <p>Recent pages</p>
               <PageLink pageProps={pages}/>
             </>
           }
+        {pages.length == 0 && 
+          <p>No posts found</p>
+        }
         </>
       }
     </>

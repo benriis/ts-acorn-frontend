@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.header}>
-        <Link href="/"><h1>ACORN</h1></Link>
+        <Link href="/"><h1 className={styles.logo}>ACORN</h1></Link>
       </div>
       {leftSideNav}
     </nav>

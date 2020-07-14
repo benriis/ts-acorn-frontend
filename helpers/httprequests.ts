@@ -8,7 +8,11 @@ type UserLoginInfo = {
   password: string
 }
 
-export const loginHttp = async (data: UserLoginInfo) => {
+type LoginObject = {
+  status: number
+}
+
+export const loginHttp = async (data: UserLoginInfo): Promise<LoginObject> => {
   return await axios({
     method: 'post',
     url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/sign_in`,
@@ -18,13 +22,13 @@ export const loginHttp = async (data: UserLoginInfo) => {
   .then(res => {
     let userStr = JSON.stringify(res.data.data.user)
     localStorage.setItem('user', userStr)
-    console.log(res)
-    Router.push("/")
-  })
-  .catch(err => {
-    console.log(err)
     return {
-      status: err.response!.status
+      status: 200
+    }
+  })
+  .catch(() => {
+    return {
+      status: 400
     }
   })
 }
@@ -37,7 +41,7 @@ export const registerHttp = async (data: UserLoginInfo) => {
     withCredentials: true
   })
   .then(() => {
-    loginHttp(data)
+    loginHttp(data).then(() => Router.push("/"))
   })
   .catch(err => console.log(err))
 }

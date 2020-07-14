@@ -1,12 +1,16 @@
 @import '../../styles/variables.scss';
 
+.logo {
+  font-weight: 600;
+}
+
 .navbar {
   display: flex;
   align-items: baseline;
 }
 
 .button {
-  font-weight: 700;
+  font-weight: 600;
   color: black;
   text-decoration-thickness: .1rem;
   margin-right: 1rem;

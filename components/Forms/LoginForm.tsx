@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Form.module.scss'
 import { loginHttp } from '../../helpers/httprequests'
+import Router from 'next/router'
 
 const LoginForm = () => {
 
@@ -20,6 +21,19 @@ const LoginForm = () => {
   const submit = async (e: any) => {
     e.preventDefault()
     loginHttp(input)
+    .then(res => {
+      switch (res.status) {
+        case 200:
+          Router.push("/")
+          break;
+        case 400:
+          alert("Username or password doesn't match")
+          break;
+        default:
+          alert("something went wrong, try again")
+          break;
+      }
+    })
   }
 
   return (
