@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './Navbar.module.scss'
 import Link from 'next/link'
-import Button from '../Button/Button'
 import { isLoggedIn, getUser, logout } from '../../helpers/auth'
 
 const Navbar = () => {

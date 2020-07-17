@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Button from '../Button/Button'
 import * as Showdown from 'showdown'
 import hljs from '../../helpers/highlight'
-import { Page } from '../../interfaces/index'
+import { IPage } from '../../interfaces/index'
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -15,7 +15,7 @@ const converter = new Showdown.Converter({
 });
 
 type pageProps = {
-  page: Page
+  page: IPage
 }
 
 
