@@ -21,17 +21,18 @@ const LoginForm = () => {
     e.preventDefault()
     loginHttp(input)
     .then(res => {
-      switch (res.status) {
-        case 200:
-          Router.push("/")
-          break;
-        case 400:
-          alert("Username or password doesn't match")
-          break;
-        default:
-          alert("something went wrong, try again")
-          break;
-      }
+      console.log(res)
+      // switch (res.status) {
+      //   case 200:
+      //     Router.push("/")
+      //     break;
+      //   case 400:
+      //     alert("Username or password doesn't match")
+      //     break;
+      //   default:
+      //     alert("something went wrong, try again")
+      //     break;
+      // }
     })
   }
 
