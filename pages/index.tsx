@@ -3,9 +3,9 @@ import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import PageLink from '../components/PageLink/PageLink'
 // import Router from 'next/router'
-import { isBrowser, logout } from '../helpers/auth'
+import { isBrowser } from '../helpers/auth'
 import { IPage, ITag } from '../interfaces/index'
-
+// logout
 type props = {
   tags: ITag[],
   pages: IPage[],
