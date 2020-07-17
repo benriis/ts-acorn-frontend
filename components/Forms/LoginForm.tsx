@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Form.module.scss'
 import { loginHttp } from '../../helpers/httprequests'
-import Router from 'next/router'
+// import Router from 'next/router'
 
 const LoginForm = () => {
   let [input, setInput] = useState({
@@ -22,17 +22,17 @@ const LoginForm = () => {
     loginHttp(input)
     .then(res => {
       console.log(res)
-        switch (res.status) {
-          case 200:
-            Router.push("/")
-            break;
-          case 400:
-            alert("Username or password doesn't match")
-            break;
-          default:
-            alert("something went wrong, try again")
-            break;
-        }
+        // switch (res.status) {
+        //   case 200:
+        //     Router.push("/")
+        //     break;
+        //   case 400:
+        //     alert("Username or password doesn't match")
+        //     break;
+        //   default:
+        //     alert("something went wrong, try again")
+        //     break;
+        // }
     })
   }
 
