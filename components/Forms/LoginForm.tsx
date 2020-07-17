@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Form.module.scss'
 import { loginHttp } from '../../helpers/httprequests'
-import Router from 'next/router'
+// import Router from 'next/router'
 
 const LoginForm = () => {
   let [input, setInput] = useState({
