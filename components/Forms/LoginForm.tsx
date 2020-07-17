@@ -4,7 +4,6 @@ import { loginHttp } from '../../helpers/httprequests'
 import Router from 'next/router'
 
 const LoginForm = () => {
-
   let [input, setInput] = useState({
     email: "",
     password: ""

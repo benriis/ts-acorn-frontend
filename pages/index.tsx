@@ -4,12 +4,11 @@ import { GetServerSideProps } from 'next'
 import PageLink from '../components/PageLink/PageLink'
 import Router from 'next/router'
 import { isBrowser, logout } from '../helpers/auth'
-import { useEffect } from 'react'
-
+import { IPage, ITag } from '../interfaces/index'
 
 type props = {
-  tags: Object[],
-  pages: Object[],
+  tags: ITag[],
+  pages: IPage[],
   statusCode?: number
 }
 

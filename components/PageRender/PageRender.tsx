@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Button from '../Button/Button'
 import * as Showdown from 'showdown'
 import hljs from '../../helpers/highlight'
+import { Page } from '../../interfaces/index'
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -14,15 +15,7 @@ const converter = new Showdown.Converter({
 });
 
 type pageProps = {
-  page: {
-    content: string,
-    id: number,
-    title: string,
-    parent: {title: string, id: number}
-    children: {title: string, id: number}[]
-    parent_id: number,
-    topics: {id: number, text: string}[]
-  }
+  page: Page
 }
 
 
@@ -43,8 +36,8 @@ const PageRender = ({ page }: pageProps) => {
       <div dangerouslySetInnerHTML={{__html: converter.makeHtml(page.content)}} />
       <div>
         <Link href={{pathname: `/page/new`, query: {page: page.id}}}><a>Create new Page</a></Link>
-        <Link href={{pathname: `/page/edit`, query: {page: page.id}}}><a>Edit Post</a></Link>
-        <div>
+        <Link href={{pathname: `/page/edit`, query: {page: page.id}}}><a>Edit Page</a></Link>
+        <div className={styles.related}>
           {!!page.parent &&
             <Button href={`/page/${page.parent.id}`} title={`\u2190 ${page.parent.title}`} />
           }

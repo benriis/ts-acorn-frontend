@@ -8,3 +8,19 @@ export type User = {
   id: number
   name: string
 }
+
+export type IPage = {
+  content: string,
+  id: number,
+  title: string,
+  parent: {title: string, id: number}
+  children: {title: string, id: number}[]
+  parent_id: number,
+  topics: {id: number, text: string}[]
+}
+
+export type ITag = {
+  id: number,
+  text: string,
+  count: number
+}
