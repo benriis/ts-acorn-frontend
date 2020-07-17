@@ -2,7 +2,7 @@ import Tag from '../components/Tag/Tag'
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import PageLink from '../components/PageLink/PageLink'
-import Router from 'next/router'
+// import Router from 'next/router'
 import { isBrowser, logout } from '../helpers/auth'
 import { IPage, ITag } from '../interfaces/index'
 
@@ -15,8 +15,9 @@ type props = {
 const IndexPage = ({tags, pages, statusCode}: props) => {
   if (isBrowser()) {
     if (statusCode == 401) {
-      logout()
-      Router.push(`/auth/login`)
+      console.log("Somehow the status is 401")
+      // logout()
+      // Router.push(`/auth/login`)
     }
   }
 
