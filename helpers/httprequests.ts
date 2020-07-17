@@ -47,19 +47,19 @@ export const registerHttp = async (data: UserLoginInfo) => {
 }
 
 export const logoutHttp = async () => {
-  await axios({
-    method: 'get',
-    url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/log_out`,
-    withCredentials: true,
-  })
-  .then(res => {
-    console.log(res)
-    localStorage.removeItem('user')
-    Router.push("/")
-  })
-  .catch(err => {
-    console.log(err)
-  })
+  // await axios({
+  //   method: 'get',
+  //   url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/log_out`,
+  //   withCredentials: true,
+  // })
+  // .then(res => {
+  //   console.log(res)
+  //   localStorage.removeItem('user')
+  //   Router.push("/")
+  // })
+  // .catch(err => {
+  //   console.log(err)
+  // })
 }
 
 export const createPageHttp = async (data: object, parent_id?: number) => {
