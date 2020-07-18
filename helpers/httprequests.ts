@@ -18,7 +18,6 @@ export const loginHttp = async (data: UserLoginInfo): Promise<LoginObject> => {
     url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/users/sign_in`,
     data: data,
     withCredentials: true,
-		headers: { crossDomain: true, 'Content-Type': 'application/json' }
   })
   .then(res => {
     let userStr = JSON.stringify(res.data.data.user)
