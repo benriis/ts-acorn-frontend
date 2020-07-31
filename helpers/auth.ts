@@ -1,14 +1,16 @@
-import { logoutHttp } from "./httprequests"
 
+import Cookies from 'universal-cookie'
+import Router from 'next/router'
+const cookies = new Cookies()
 export const isBrowser = () => typeof window !== "undefined"
 
 export const getUser = () => 
   isBrowser() && localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user')!)
+    ? localStorage.getItem('user')
     : null
 
-export const setUser = (user: Object) => {
-  localStorage.setItem('user', JSON.stringify(user))
+export const setUser = (username: string) => {
+  localStorage.setItem('user', username)
 }
 
 export const isLoggedIn = () => {
@@ -17,6 +19,7 @@ export const isLoggedIn = () => {
 }
 
 export const logout = () => {
+  cookies.remove('jwt')
   localStorage.removeItem('user')
-  logoutHttp()
+  Router.push('/auth/login')
 }

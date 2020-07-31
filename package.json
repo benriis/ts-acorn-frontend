@@ -22,7 +22,8 @@
     "rich-markdown-editor": "^10.2.1-0",
     "sass": "^1.26.8",
     "showdown": "^1.9.1",
-    "simplemde": "^1.11.2"
+    "simplemde": "^1.11.2",
+    "universal-cookie": "^4.0.3"
   },
   "devDependencies": {
     "@editorjs/editorjs": "^2.18.0",

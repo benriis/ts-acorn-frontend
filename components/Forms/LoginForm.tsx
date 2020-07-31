@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styles from './Form.module.scss'
 import { loginHttp } from '../../helpers/httprequests'
-// import Router from 'next/router'
+import Router from 'next/router'
 
 const LoginForm = () => {
   let [input, setInput] = useState({
-    email: "",
+    username: "",
     password: ""
   })
 
@@ -21,18 +21,17 @@ const LoginForm = () => {
     e.preventDefault()
     loginHttp(input)
     .then(res => {
-      console.log(res)
-        // switch (res.status) {
-        //   case 200:
-        //     Router.push("/")
-        //     break;
-        //   case 400:
-        //     alert("Username or password doesn't match")
-        //     break;
-        //   default:
-        //     alert("something went wrong, try again")
-        //     break;
-        // }
+        switch (res.status) {
+          case 200:
+            Router.push("/")
+            break;
+          case 400:
+            alert("Username or password doesn't match")
+            break;
+          default:
+            alert("something went wrong, try again")
+            break;
+        }
     })
   }
 
@@ -40,8 +39,8 @@ const LoginForm = () => {
     <div className={styles.container}>
       <form className={styles.form}>
         <div className={styles.inputfield}>
-          <label htmlFor="email">Username or email</label>
-          <input type="text" name="email" id="email" onChange={handleChange} value={input.email} placeholder="e.g. me@hey.com" />
+          <label htmlFor="username">Username</label>
+          <input type="text" name="username" id="username" onChange={handleChange} value={input.username} placeholder="e.g. me@hey.com" />
         </div>
         <div className={styles.inputfield}>
           <label htmlFor="password">Password</label>

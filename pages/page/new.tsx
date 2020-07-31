@@ -3,8 +3,18 @@ import { createPageHttp } from '../../helpers/httprequests'
 import { GetServerSideProps } from 'next'
 const Editor = dynamic(() => import('../../components/EditorTest/EditorTest'), { ssr: false })
 
+type pageData = {
+  title: string,
+  content: string,
+  topics: string,
+  id: number,
+  parent_id?: number
+}
+
 const New = ({ parentPostId }: any) => {
-  const createPage = async (data: object) => {
+  
+  
+  const createPage = async (data: pageData) => {
     createPageHttp(data, parentPostId)
   }
 
@@ -14,6 +24,7 @@ const New = ({ parentPostId }: any) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
   const parent_id = ctx.query.page
   return {
     props: {

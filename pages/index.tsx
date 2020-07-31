@@ -2,9 +2,10 @@ import Tag from '../components/Tag/Tag'
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import PageLink from '../components/PageLink/PageLink'
-// import Router from 'next/router'
-import { isBrowser } from '../helpers/auth'
+import { isBrowser, logout } from '../helpers/auth'
 import { IPage, ITag } from '../interfaces/index'
+import Cookies from 'universal-cookie'
+
 // logout
 type props = {
   tags: ITag[],
@@ -15,9 +16,7 @@ type props = {
 const IndexPage = ({tags, pages, statusCode}: props) => {
   if (isBrowser()) {
     if (statusCode == 401) {
-      console.log("Somehow the status is 401")
-      // logout()
-      // Router.push(`/auth/login`)
+      logout()
     }
   }
 
@@ -47,6 +46,8 @@ const IndexPage = ({tags, pages, statusCode}: props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = new Cookies(ctx.req.headers.cookie)
+  const token = cookies.get('jwt')
 
   const query_tags = `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/topics`
   const query_pages = `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/pages`
@@ -55,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   await axios.get(query_tags, {
     headers: {
-      cookie: ctx.req.headers.cookie 
+      authorization: `Bearer ${token}`
     }
   })
   .then(res => tags = res.data)
@@ -63,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   await axios.get(query_pages, {
     headers: {
-      cookie: ctx.req.headers.cookie
+      authorization: `Bearer ${token}`
     }
   })
   .then(res => pages = res.data)

@@ -4,7 +4,7 @@ import { registerHttp } from '../../helpers/httprequests'
 
 const RegisterForm = () => {
   let [input, setInput] = useState({
-    email: "",
+    username: "",
     password: "",
     passwordConfirmation: ""
   })
@@ -28,8 +28,8 @@ const RegisterForm = () => {
     <div className={styles.container}>
       <form className={styles.form}>
         <div className={styles.inputfield}>
-          <label htmlFor="email">Username or email</label>
-          <input type="text" name="email" id="email" onChange={handleChange} value={input.email} placeholder="e.g. me@hey.com" />
+          <label htmlFor="username">Username</label>
+          <input type="text" name="username" id="username" onChange={handleChange} value={input.username} placeholder="e.g. me@hey.com" />
         </div>
         <div className={styles.inputfield}>
           <label htmlFor="password">Password</label>

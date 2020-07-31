@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
       <Link href="/page/new"><a className={styles.button}>Write page</a></Link>
       <a onClick={handleLogout}>logout</a>
-      <p className={styles.greeter}>Hey {getUser().email}</p>
+      <p className={styles.greeter}>Hey {getUser()}</p>
     </>
     )
   } else {
