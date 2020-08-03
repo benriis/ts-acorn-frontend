@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import styles from './PageRender.module.scss'
 import Tag from "../Tag/Tag"
 import Link from 'next/link'
-import Button from '../Button/Button'
 import * as Showdown from 'showdown'
 import hljs from '../../helpers/highlight'
 import { IPage } from '../../interfaces/index'
