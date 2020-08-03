@@ -19,7 +19,7 @@ const Layout = ({ children, title = 'Acorn' }: Props) => (
       <div className={styles.container}>
         {children}
       </div>
-    <footer>
+    <footer className={styles.footer}>
       {/* script tag prevents flash of unstyled content when form is present  */}
       <script> </script>
     </footer>

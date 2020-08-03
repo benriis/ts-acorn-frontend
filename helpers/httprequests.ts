@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Router from 'next/router'
 import Cookies from 'universal-cookie' 
+import { setUser } from './auth'
 const cookies = new Cookies()
 
 export const isBrowser = () => typeof window !== "undefined"
@@ -32,8 +33,10 @@ export const loginHttp = async (data: UserLoginInfo): Promise<LoginObject> => {
     data: data
   })
   .then((res) => {
-    cookies.set('jwt', res.data.jwt)
-    localStorage.setItem('user', res.data.username)
+    cookies.set('jwt', res.data.jwt, { path: '/' })
+    console.log(localStorage.getItem("user"))
+    setUser(res.data.username)
+    console.log(localStorage.getItem("user"))
     return {
       status: 200
     }
@@ -74,7 +77,6 @@ export const createPageHttp = async (data: pageData, parent_id?: number) => {
 
 export const updatePageHttp = async (data: pageData) => {
   const token = cookies.get('jwt')
-  console.log(data)
   await axios({
     method: 'patch',
     url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/pages/${data.id}`,
@@ -86,5 +88,19 @@ export const updatePageHttp = async (data: pageData) => {
     }
   })
   .then(res => Router.push(`/page/${res.data.data.id}`)
+  )
+}
+
+export const deletePageHttp = async (id: number) => {
+  const token = cookies.get('jwt')
+  await axios({
+    method: 'delete',
+    url: `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/pages/${id}`,
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  })
+  .then(() => Router.push(`/`)
+  .catch(err => console.log(err))
   )
 }

@@ -5,7 +5,7 @@ const cookies = new Cookies()
 export const isBrowser = () => typeof window !== "undefined"
 
 export const getUser = () => 
-  isBrowser() && localStorage.getItem('user')
+  isBrowser() && localStorage.getItem('user') 
     ? localStorage.getItem('user')
     : null
 
@@ -19,7 +19,8 @@ export const isLoggedIn = () => {
 }
 
 export const logout = () => {
-  cookies.remove('jwt')
+  console.log("loggin out")
+  cookies.remove('jwt', { path: '/' })
   localStorage.removeItem('user')
   Router.push('/auth/login')
 }

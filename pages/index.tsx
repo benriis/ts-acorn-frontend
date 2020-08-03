@@ -16,6 +16,7 @@ type props = {
 const IndexPage = ({tags, pages, statusCode}: props) => {
   if (isBrowser()) {
     if (statusCode == 401) {
+      console.log("error code")
       logout()
     }
   }
@@ -46,6 +47,7 @@ const IndexPage = ({tags, pages, statusCode}: props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  console.log("ctx:",  ctx)
   const cookies = new Cookies(ctx.req.headers.cookie)
   const token = cookies.get('jwt')
 
@@ -67,8 +69,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       authorization: `Bearer ${token}`
     }
   })
-  .then(res => pages = res.data)
-  .catch(() => ctx.res.statusCode = 401)
+  .then(res => {
+    pages = res.data
+  })
+  .catch(() => {
+    ctx.res.statusCode = 401
+  })
+
+  console.log("Cookie token: ", token)
 
   return {
     props: { 

@@ -7,7 +7,7 @@ const PageLink = ({pageProps}: {pageProps: page[]}) => {
   return (
     <div className={styles.container}>
       {pageProps.reverse().map((p: any) => (
-        <Button key={p.id} href={`/page/${p.id}`} title={p.title}/>
+        <a className="btn-link" key={p.id} href={`/page/${p.id}`}>{p.title}</a>
       ))}
     </div>
   )

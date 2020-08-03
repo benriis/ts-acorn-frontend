@@ -18,7 +18,6 @@ const EditorTest = ({submitData, currentPage}) => {
         topics: currentPage.data.topics.map(t => t.text).join(", "),
         content: currentPage.data.content
       }))
-      // setValue(props.post.posts.data.content)
     }
   }, [])
 

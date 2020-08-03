@@ -14,16 +14,16 @@ const Navbar = () => {
   if (isLoggedIn()) {
     leftSideNav = (
     <>
-      <Link href="/page/new"><a className={styles.button}>Write page</a></Link>
-      <a onClick={handleLogout}>logout</a>
+      <Link href="/page/new"><a className="btn-link">Write page</a></Link>
+      <a href="#" onClick={handleLogout} className="btn-link">logout</a>
       <p className={styles.greeter}>Hey {getUser()}</p>
     </>
     )
   } else {
     leftSideNav = (
     <>
-      <Link href="/auth/register"><a className={styles.button}>Register</a></Link>
-      <Link href="/auth/login"><a className={styles.button}>Login</a></Link>
+      <Link href="/auth/register"><a className="btn-link">Register</a></Link>
+      <Link href="/auth/login"><a className="btn-link">Login</a></Link>
     </>
     )
   }

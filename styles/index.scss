@@ -14,7 +14,7 @@ p {
   font-family: $body-font;
 }
 
-a {
+.btn-link {
   font-family: $body-font;
   font-weight: 700;
   color: black;
@@ -36,11 +36,6 @@ a {
 button {
   outline: 0;
 }
-
-button::-moz-focus-inner {
-  border: 0;
-}
-
 
 blockquote {
   margin: 0;

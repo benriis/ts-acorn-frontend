@@ -23,7 +23,9 @@ const LoginForm = () => {
     .then(res => {
         switch (res.status) {
           case 200:
-            Router.push("/")
+            if (localStorage.getItem("user")) {
+              Router.push("/")
+            }
             break;
           case 400:
             alert("Username or password doesn't match")
