@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Navbar.module.scss'
 import Link from 'next/link'
 import { isLoggedIn, getUser, logout } from '../../helpers/auth'
+import Hamburger from './Hamburger'
 
 const Navbar = () => {
 
@@ -14,7 +15,7 @@ const Navbar = () => {
   if (isLoggedIn()) {
     leftSideNav = (
     <>
-      <Link href="/page/new"><a className="btn-link">Write page</a></Link>
+      <Link href="/page/new"><a className="btn-link">+ Write page</a></Link>
       <a href="#" onClick={handleLogout} className="btn-link">logout</a>
       <p className={styles.greeter}>Hey {getUser()}</p>
     </>
@@ -33,7 +34,12 @@ const Navbar = () => {
       <div className={styles.header}>
         <Link href="/"><h1 className={styles.logo}>ACORN</h1></Link>
       </div>
-      {leftSideNav}
+      <div className={styles.leftSideWeb}>
+        {leftSideNav}
+      </div>
+      <div className={styles.leftSideMobile}>
+        <Hamburger />
+      </div>
     </nav>
   )
 }
