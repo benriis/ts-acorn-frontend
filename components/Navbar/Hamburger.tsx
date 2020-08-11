@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './Hamburger.module.scss';
 
-const Hamburger = () => {
+const Hamburger = ({active}: {active: boolean}) => {
   return (
-    <button className={styles.button}>
+    <div className={`${styles.button} ${active ? styles.active : ''}` }>
       <div />
       <div />
       <div />
-    </button>
+    </div>
   )
 }
 
