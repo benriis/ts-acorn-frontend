@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { createPageHttp } from '../../helpers/httprequests'
 import { GetServerSideProps } from 'next'
+import Title from '../../components/Snacks/Title'
 const Editor = dynamic(() => import('../../components/EditorTest/EditorTest'), { ssr: false })
 
 type pageData = {
@@ -19,7 +20,10 @@ const New = ({ parentPostId }: any) => {
   }
 
   return (
+    <>
+    <Title title="Write page" />
     <Editor submitData={createPage} currentPage={null} />
+    </>
   )
 }
 

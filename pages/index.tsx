@@ -5,6 +5,7 @@ import PageLink from '../components/PageLink/PageLink'
 import { isBrowser, logout } from '../helpers/auth'
 import { IPage, ITag } from '../interfaces/index'
 import Cookies from 'universal-cookie'
+import Title from '../components/Snacks/Title'
 
 // logout
 type props = {
@@ -23,17 +24,18 @@ const IndexPage = ({tags, pages, statusCode}: props) => {
 
   return (
     <>
+    <Title title="Index" />
       {statusCode !== 401 &&
         <>
           {tags.length > 0 &&
             <>
-              <p>Most used tags</p>
+              <p>Tags</p>
               <Tag tagProps={tags} />
             </>
           }
           {pages.length > 0 &&
             <>
-              <p>Recent pages</p>
+              <p>Pages</p>
               <PageLink pageProps={pages}/>
             </>
           }
@@ -52,7 +54,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const token = cookies.get('jwt')
 
   const query_tags = `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/topics`
-  const query_pages = `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/pages`
+  const query_pages = `${process.env.NEXT_PUBLIC_SERVER_HOST}/api/pages?`
   let pages = {data: {}}
   let tags = {data: {}}
 

@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import styles from './Form.module.scss'
 import { loginHttp } from '../../helpers/httprequests'
 import Router from 'next/router'
+import Link from 'next/link'
+import InfoBox from '../Snacks/InfoBox'
 
 const LoginForm = () => {
   let [input, setInput] = useState({
     username: "",
     password: ""
   })
+  const information: string = "Use 'Username' and 'Password' as credentials to test Acorn"
 
   const handleChange = (e: any) => {
     e.persist()
@@ -39,6 +42,7 @@ const LoginForm = () => {
 
   return (
     <div className={styles.container}>
+      <InfoBox text={information}/>
       <form className={styles.form}>
         <div className={styles.inputfield}>
           <label htmlFor="username">Username</label>
@@ -49,6 +53,10 @@ const LoginForm = () => {
           <input type="password" name="password" id="password" onChange={handleChange} value={input.password} placeholder="*******" />
         </div>
         <button className={styles.button} onClick={submit}>Log in</button>
+        <div className={styles.link}>
+          <p>Not a user?</p>
+          <p>&nbsp;<Link href="/auth/register"><a>Register here</a></Link></p>
+        </div>
       </form>
     </div>
   )

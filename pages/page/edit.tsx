@@ -4,6 +4,7 @@ import axios from 'axios'
 // import Router from 'next/router'
 import Cookies from 'universal-cookie'
 import { updatePageHttp } from '../../helpers/httprequests'
+import Title from '../../components/Snacks/Title'
 const Editor = dynamic(() => import('../../components/EditorTest/EditorTest'), { ssr: false })
 
 type pageData = {
@@ -32,7 +33,10 @@ const Edit = ({ page, parent_id }: any) => {
   }
 
   return (
+    <>
+    <Title title="Edit Page" />
     <Editor submitData={updatePage} currentPage={page} />
+    </>
   )
 }
 

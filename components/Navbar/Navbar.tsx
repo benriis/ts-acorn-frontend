@@ -22,6 +22,7 @@ const Navbar = () => {
   isLoggedIn()
   ? leftSideNav = (
     <>
+      <Link href="/"><a onClick={() => toggleMenu()} className="btn-link">Index</a></Link>
       <Link href="/page/new"><a onClick={() => toggleMenu()} className="btn-link">Write page</a></Link>
       <a href="#" onClick={handleLogout} className="btn-link">logout</a>
       <p onClick={toggleMenu} className={styles.greeter}>Hey {getUser()}</p>

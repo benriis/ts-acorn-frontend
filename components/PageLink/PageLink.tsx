@@ -1,12 +1,13 @@
 import styles from './PageLink.module.scss'
+import Link from 'next/link';
 
 type page = Object
 
 const PageLink = ({pageProps}: {pageProps: page[]}) => {
   return (
     <div className={styles.container}>
-      {pageProps.reverse().map((p: any) => (
-        <a className="btn-link" key={p.id} href={`/page/${p.id}`}>{p.title}</a>
+      {pageProps.map((p: any, i: number) => (
+        <Link href={`/page/${p.id}`} key={i}><a className="btn-link">{p.title}</a></Link>
       ))}
     </div>
   )

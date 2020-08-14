@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styles from './Form.module.scss'
 import { registerHttp } from '../../helpers/httprequests'
+import Link from 'next/link'
+import InfoBox from '../Snacks/InfoBox'
 
 const RegisterForm = () => {
   let [input, setInput] = useState({
@@ -8,6 +10,8 @@ const RegisterForm = () => {
     password: "",
     passwordConfirmation: ""
   })
+
+  const information: string =  "Acorn only supports username/password credentials"
 
   const handleChange = (e: any) => {
     e.persist()
@@ -26,6 +30,7 @@ const RegisterForm = () => {
 
   return (
     <div className={styles.container}>
+      <InfoBox text={information} />
       <form className={styles.form}>
         <div className={styles.inputfield}>
           <label htmlFor="username">Username</label>
@@ -36,10 +41,14 @@ const RegisterForm = () => {
           <input type="password" name="password" id="password" onChange={handleChange} value={input.password} placeholder="*******" />
         </div>
         <div className={styles.inputfield}>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Retype password</label>
           <input type="password" name="passwordConfirmation" id="passwordConfirmation" onChange={handleChange} value={input.passwordConfirmation} placeholder="*******" />
         </div>
         <button className={styles.button} onClick={submit}>Register</button>
+        <div className={styles.link}>
+          <p>Already a user?</p>
+          <p>&nbsp;<Link href="/auth/login"><a>Log in here</a></Link></p>
+        </div>
       </form>
     </div>
   )

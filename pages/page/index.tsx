@@ -5,6 +5,8 @@ import PageLink from '../../components/PageLink/PageLink'
 import { isBrowser, logout } from '../../helpers/auth'
 import { IPage, ITag } from '../../interfaces/index'
 import Cookies from 'universal-cookie'
+import { useRouter } from 'next/router'
+import Title from '../../components/Snacks/Title'
 
 // logout
 type props = {
@@ -20,20 +22,28 @@ const IndexPage = ({tags, pages, statusCode}: props) => {
       logout()
     }
   }
+  
+  const router = useRouter()
+  if(isBrowser()) {
+    console.log("query: ", router.query)
+    console.log("pathname: ", router.pathname)
+    console.log("asPath: ", router.asPath)
+  }
 
   return (
     <>
+    <Title title="Index" />
       {statusCode !== 401 &&
         <>
           {tags.length > 0 &&
             <>
-              <p>Most used tags</p>
+              <p>Tags</p>
               <Tag tagProps={tags} />
             </>
           }
           {pages.length > 0 &&
             <>
-              <p>Recent pages</p>
+              <p>Pages</p>
               <PageLink pageProps={pages}/>
             </>
           }
