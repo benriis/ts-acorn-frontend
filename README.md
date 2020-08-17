@@ -1,6 +1,10 @@
 # Acorn
 This is the frontend code for [`Acorn`](https://ts-acorn-frontend.vercel.app/), backend code can be found [`here`](https://github.com/benriis/acorn_backend)
 
+## Demo 
+
+[Acorn](https://ts-acorn-frontend.vercel.app/)
+
 ## Installation
 ```bash
 git clone https://github.com/benriis/ts-acorn-frontend.git my-acorn
