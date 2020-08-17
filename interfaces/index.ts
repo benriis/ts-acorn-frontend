@@ -24,3 +24,8 @@ export type ITag = {
   text: string,
   count: number
 }
+
+export type IPageLink = {
+  title: string,
+  id: number
+}
