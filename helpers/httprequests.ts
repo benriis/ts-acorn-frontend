@@ -8,7 +8,7 @@ export const isBrowser = () => typeof window !== "undefined"
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_HOST
 axios.defaults.headers.post["Content-Type"] = "application/json"
 
-type UserLoginInfo = {
+export type UserLoginInfo = {
   username: string,
   password: string
 }

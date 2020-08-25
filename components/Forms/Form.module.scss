@@ -15,28 +15,31 @@
   border-radius: 10px;
   border: 1px solid rgba(174, 174, 174, 0.5);
   box-shadow: 0 -1px 10px rgba(0,0,0,0.05),0 1px 4px rgba(0,0,0,0.1),0 10px 30px #f3ece8;
-}
-
-.inputfield {
-  display: flex;
-  flex-direction: column;
-  padding-top: 1rem;
-  &:first-child {
-    padding-top: 0;
-  }
   label {
     font-family: $header-font;
     font-weight: 700;
     font-size: 1.2rem;
     margin-bottom: .5rem;
+    display: flex;
+    flex-direction: column;
+    input {
+      margin-bottom: 1rem;
+      padding: 10px;
+      border: 1px solid darkgray;
+    }
   }
-  input {
-    padding: 10px;
+  input.error {
+    border: 1px solid #BD2D2A;
+    background-color: #fdf2f2;
+  }
+  span.error {
+    color: #BD2D2A;
+    font-weight: 500;
+    font-size: .8rem;
   }
 }
 
-.button {
-  margin-top: 2rem;
+.submit {
   background: none;
   border: 1px solid #bfbfbf;
   border-bottom: 2px solid #bfbfbf;

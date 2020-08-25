@@ -1,28 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './Form.module.scss'
-import { loginHttp } from '../../helpers/httprequests'
+import { loginHttp, UserLoginInfo } from '../../helpers/httprequests'
+import { useForm } from 'react-hook-form'
 import Router from 'next/router'
 import Link from 'next/link'
 import InfoBox from '../Snacks/InfoBox'
 
+
 const LoginForm = () => {
-  let [input, setInput] = useState({
-    username: "",
-    password: ""
-  })
-  const information: string = "Use 'Username' and 'Password' as credentials to test Acorn"
+  const { register, handleSubmit, errors} = useForm<UserLoginInfo>({
+    defaultValues: {
+      username: "",
+      password: ""
+    }
+  });
 
-  const handleChange = (e: any) => {
-    e.persist()
-    setInput(prev => ({
-      ...prev,
-      [e.target.id]: e.target.value
-    }))
-  }
-
-  const submit = async (e: any) => {
-    e.preventDefault()
-    loginHttp(input)
+  const onSubmit = async (data: UserLoginInfo) => {
+    loginHttp(data)
     .then(res => {
         switch (res.status) {
           case 200:
@@ -42,17 +36,40 @@ const LoginForm = () => {
 
   return (
     <div className={styles.container}>
-      <InfoBox text={information}/>
-      <form className={styles.form}>
-        <div className={styles.inputfield}>
-          <label htmlFor="username">Username</label>
-          <input type="text" name="username" id="username" onChange={handleChange} value={input.username} placeholder="e.g. me@hey.com" />
-        </div>
-        <div className={styles.inputfield}>
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" id="password" onChange={handleChange} value={input.password} placeholder="*******" />
-        </div>
-        <button className={styles.button} onClick={submit}>Log in</button>
+      <InfoBox text="Use 'Username' and 'Password' as credentials to test Acorn"/>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <label>
+          Username
+          <input 
+            className={errors.username && styles.error} 
+            type="text" 
+            name="username" 
+            ref={register({
+              required: "Username can't be empty", 
+              pattern: {
+                value: /^[a-zA-Z0-9]{4,16}$/,
+                message: "Username must be between 4 to 16 characters"
+              }
+            })}
+          />
+          {errors.username && <span className={styles.error}>{errors.username.message}</span>}
+        </label>
+        <label>
+          Password
+          <input 
+            className={errors.password && styles.error} 
+            type="password" name="password" 
+            ref={register({
+              required: "Password can't be empty", 
+              minLength: {
+                value: 6,
+                message: "Must be atleast 6 characters"
+              }
+            })} 
+          />
+          {errors.password && <span className={styles.error}>{errors.password.message}</span>}
+        </label>
+        <input className={styles.submit} type="submit" value="Login"/>
         <div className={styles.link}>
           <p>Not a user?</p>
           <p>&nbsp;<Link href="/auth/register"><a>Register here</a></Link></p>
