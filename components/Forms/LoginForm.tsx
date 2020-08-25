@@ -36,7 +36,7 @@ const LoginForm = () => {
 
   return (
     <div className={styles.container}>
-      <InfoBox text="Use 'Username' and 'Password' as credentials to test Acorn"/>
+      <InfoBox text="Use 'Test' and 'Password' as credentials to test Acorn"/>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <label>
           Username
